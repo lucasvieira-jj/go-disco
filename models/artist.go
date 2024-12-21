@@ -6,6 +6,7 @@ type Artist struct {
 	Members  []string `json:"members"`
 	Websites []string `json:"websites"`
 	Albums   []Album  `json:"albums"`
+	PageLink string   `json:"page_link"`
 }
 
 type Album struct {

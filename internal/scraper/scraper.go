@@ -5,14 +5,11 @@ import (
 	"fmt"
 	"github.com/gocolly/colly"
 	"github.com/lucasvieira-jj/go-disco/config"
+	"github.com/lucasvieira-jj/go-disco/models"
 	"math/rand"
 	"net/http"
+	"net/url"
 )
-
-type Artist struct {
-	Name     string `json:"name"`
-	PageLink string `json:"page_link"`
-}
 
 type Scraper struct {
 	collector *colly.Collector
@@ -37,13 +34,17 @@ func RandomString(userAgentList []string) string {
 }
 
 func (c *Scraper) RetrieveArtistList() string {
-	var artists []Artist
+	var artists []models.Artist
 
 	c.collector.OnHTML(".card-artist-name > span", func(e *colly.HTMLElement) {
+		relativeLink := e.ChildAttr("a", "href")
+		baseUrl, _ := url.Parse(config.BaseURL) // A base URL
 
-		artist := Artist{
+		absoluteLink := baseUrl.ResolveReference(&url.URL{Path: relativeLink}).String()
+
+		artist := models.Artist{
 			Name:     e.ChildText("a"),
-			PageLink: e.ChildAttr("a", "href"),
+			PageLink: absoluteLink,
 		}
 		artists = append(artists, artist)
 	})
@@ -56,7 +57,7 @@ func (c *Scraper) RetrieveArtistList() string {
 		}
 	})
 
-	err := c.collector.Visit(config.BaseURL)
+	err := c.collector.Visit(config.GenreUrl)
 	if err != nil {
 		return ""
 	}
