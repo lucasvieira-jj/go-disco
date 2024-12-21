@@ -1,7 +1,8 @@
 package config
 
 var (
-	BaseURL = "https://www.discogs.com/pt_BR/genre/hip+hop"
+	BaseURL  = "https://www.discogs.com/"
+	GenreUrl = "https://www.discogs.com/pt_BR/genre/hip+hop"
 
 	// UserAgent : variable to avoid website blocks
 	UserAgent = []string{
