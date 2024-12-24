@@ -1,8 +1,9 @@
 package config
 
 var (
-	BaseURL  = "https://www.discogs.com/"
-	GenreUrl = "https://www.discogs.com/pt_BR/genre/hip+hop"
+	BaseURL           = "https://www.discogs.com/"
+	GenreUrl          = "https://www.discogs.com/pt_BR/genre/hip+hop"
+	DiscographyFilter = "?superFilter=Releases"
 
 	// UserAgent : variable to avoid website blocks
 	UserAgent = []string{
@@ -18,4 +19,8 @@ var (
 		"Mozilla/5.0 (X11; Linux i686; rv:124.0) Gecko/20100101 Firefox/124.0",
 		"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.5938.132 Safari/537.36",
 	}
+
+	MaxArtists = 10
+	MaxAlbums  = 10
+	MaxTracks  = 10
 )

@@ -8,17 +8,3 @@ type Artist struct {
 	Albums   []Album  `json:"albums"`
 	PageLink string   `json:"page_link"`
 }
-
-type Album struct {
-	Name   string   `json:"name"`
-	Year   string   `json:"year"`
-	Record []string `json:"Record"`
-	Styles []string `json:"styles"`
-	Tracks []Track  `json:"tracks"`
-}
-
-type Track struct {
-	Number   int    `json:"number"`
-	Title    string `json:"title"`
-	Duration string `json:"duration"`
-}
